@@ -69,7 +69,7 @@ export function DataReducer(state, action) {
     case ActionTypes.EDIT_RECIPE: {
       console.log(action.payload.recipe);
       const updatedRecipe = action.payload.recipe;
-      const updatedRecipes = state.recipes.filter((recipe) =>
+      const updatedRecipes = state.recipes.map((recipe) =>
         recipe.id === updatedRecipe.id ? updatedRecipe : recipe
       );
       console.log(updatedRecipes);
