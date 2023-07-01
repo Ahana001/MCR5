@@ -55,7 +55,10 @@ export function DataReducer(state, action) {
       const totalRecipes = state.recipes.length;
       result = {
         ...state,
-        recipes: [...state.recipes, { ...recipe, id: "RCP" + totalRecipes }],
+        recipes: [
+          ...state.recipes,
+          { ...recipe, id: "RCP" + (totalRecipes + 1) },
+        ],
       };
       localStorage.setItem(
         "recipes",
