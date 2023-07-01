@@ -65,14 +65,14 @@ export function CreateRecipeModal() {
             </div>
             <div className="RecipeIngredientsContainer">
               <label htmlFor="RecipeIngredients">
-                Enter Ingredients Steps Separated By comma (,)
+                Enter Ingredients Steps Separated By New Line
               </label>
               <textarea
                 id="RecipeIngredients"
                 type="text"
-                value={recipe?.ingredients?.join(",")}
+                value={recipe?.ingredients?.join("\n")}
                 onChange={(e) => {
-                  const Ingredients = e.target.value.split(",");
+                  const Ingredients = e.target.value.split("\n");
                   setRecipe(() => ({
                     ...recipe,
                     ingredients: Ingredients,
@@ -83,14 +83,14 @@ export function CreateRecipeModal() {
             <div className="RecipeInstructionsContainer">
               <label htmlFor="RecipeInstructions">
                 {" "}
-                Enter Instructions Steps Separated By comma (,)
+                Enter Instructions Steps Separated By New Line
               </label>
               <textarea
                 id="RecipeInstructions"
                 type="text"
-                value={recipe?.instructions}
+                value={recipe?.instructions?.join("\n")}
                 onChange={(e) => {
-                  const Instructions = e.target.value.split(",");
+                  const Instructions = e.target.value.split("\n");
                   setRecipe(() => ({
                     ...recipe,
                     instructions: Instructions,
