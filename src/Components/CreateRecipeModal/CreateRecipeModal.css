@@ -73,3 +73,17 @@
   width: 100%;
   box-sizing: border-box;
 }
+.SaveButton {
+  background-color: rgb(83, 83, 253);
+  border-radius: 0.36rem;
+  text-align: center;
+  cursor: pointer;
+  color: white;
+  padding: 0.5rem 2rem;
+  font-size: 1.4rem;
+  align-self: flex-end;
+}
+.RecipeIngredientsContainer textarea,
+.RecipeInstructionsContainer textarea {
+  height: 10rem;
+}

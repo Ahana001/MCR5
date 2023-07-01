@@ -11,7 +11,7 @@ import { useFilterDataHook } from "../../Hook/FilterDataHook";
 
 export function HomePage() {
   const { state, dispatch } = useContext(DataContext);
-  const { setIsOpenModal } = useContext(DisplayContext);
+  const { setIsOpenModal, setRecipe } = useContext(DisplayContext);
   const filteredRecipes = useFilterDataHook();
   useEffect(() => {
     dispatch({
@@ -81,7 +81,10 @@ export function HomePage() {
         <div className="CreateRecipe">
           <AiOutlinePlusCircle
             className="CreateRecipeIcon"
-            onClick={() => setIsOpenModal(() => true)}
+            onClick={() => {
+              setRecipe(() => null);
+              setIsOpenModal(() => true);
+            }}
           />
         </div>
       </ul>

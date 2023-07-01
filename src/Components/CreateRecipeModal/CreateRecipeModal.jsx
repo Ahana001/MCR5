@@ -2,11 +2,14 @@ import { useContext } from "react";
 import "./CreateRecipeModal.css";
 import { DisplayContext } from "../../Context/DisplayContext";
 import { RxCross1 } from "react-icons/rx";
-import axios from "axios";
+
+import { DataContext } from "../../Context/DataContext";
+import { ActionTypes } from "../../Reducer/DataReducer";
 
 export function CreateRecipeModal() {
   const { isOpenModal, setIsOpenModal, recipe, setRecipe } =
     useContext(DisplayContext);
+  const { dispatch } = useContext(DataContext);
 
   return (
     <div
@@ -67,11 +70,12 @@ export function CreateRecipeModal() {
               <textarea
                 id="RecipeIngredients"
                 type="text"
-                value={recipe?.Ingredients?.join(",")}
+                value={recipe?.ingredients?.join(",")}
                 onChange={(e) => {
+                  const Ingredients = e.target.value.split(",");
                   setRecipe(() => ({
                     ...recipe,
-                    Ingredients: e.target.value,
+                    ingredients: Ingredients,
                   }));
                 }}
               />
@@ -86,12 +90,33 @@ export function CreateRecipeModal() {
                 type="text"
                 value={recipe?.instructions}
                 onChange={(e) => {
+                  const Instructions = e.target.value.split(",");
                   setRecipe(() => ({
                     ...recipe,
-                    instructions: e.target.value,
+                    instructions: Instructions,
                   }));
                 }}
               />
+            </div>
+            <div
+              className="SaveButton"
+              onClick={() => {
+                if (recipe?.id) {
+                  dispatch({
+                    type: ActionTypes.EDIT_RECIPE,
+                    payload: { recipe: recipe },
+                  });
+                } else {
+                  dispatch({
+                    type: ActionTypes.ADD_RECIPE,
+                    payload: { recipe: recipe },
+                  });
+                }
+                setIsOpenModal(() => false);
+                setRecipe(() => null);
+              }}
+            >
+              save
             </div>
           </div>
         </div>

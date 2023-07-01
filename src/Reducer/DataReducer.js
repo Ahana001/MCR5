@@ -3,6 +3,8 @@ export const ActionTypes = {
   SET_SEARCH_BY: "SET_SEARCH_BY",
   SET_SEARCH_TEXT: "SET_SEARCH_TEXT",
   DELETE_RECIPE: "DELETE_RECIPE",
+  ADD_RECIPE: "ADD_RECIPE",
+  EDIT_RECIPE: "EDIT_RECIPE",
 };
 
 export const initialState = {
@@ -41,6 +43,36 @@ export function DataReducer(state, action) {
       const updatedRecipes = state.recipes.filter(
         (recipe) => recipe.id !== recipeId
       );
+      result = {
+        ...state,
+        recipes: updatedRecipes,
+      };
+      localStorage.setItem("recipes", JSON.stringify(updatedRecipes));
+      break;
+    }
+    case ActionTypes.ADD_RECIPE: {
+      const recipe = action.payload.recipe;
+      const totalRecipes = state.recipes.length;
+      result = {
+        ...state,
+        recipes: [...state.recipes, { ...recipe, id: "RCP" + totalRecipes }],
+      };
+      localStorage.setItem(
+        "recipes",
+        JSON.stringify([
+          ...state.recipes,
+          { ...recipe, id: "RCP" + totalRecipes },
+        ])
+      );
+      break;
+    }
+    case ActionTypes.EDIT_RECIPE: {
+      console.log(action.payload.recipe);
+      const updatedRecipe = action.payload.recipe;
+      const updatedRecipes = state.recipes.filter((recipe) =>
+        recipe.id === updatedRecipe.id ? updatedRecipe : recipe
+      );
+      console.log(updatedRecipes);
       result = {
         ...state,
         recipes: updatedRecipes,

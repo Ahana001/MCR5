@@ -4,9 +4,11 @@ import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { useContext } from "react";
 import { DataContext } from "../../Context/DataContext";
 import { ActionTypes } from "../../Reducer/DataReducer";
+import { DisplayContext } from "../../Context/DisplayContext";
 
 export function RecipeCard({ recipe }) {
   const { dispatch } = useContext(DataContext);
+  const { setIsOpenModal, setRecipe } = useContext(DisplayContext);
 
   return (
     <div className="RecipeCardContainer">
@@ -39,7 +41,12 @@ export function RecipeCard({ recipe }) {
           <AiFillDelete />
         </div>
         <div className="EditButton">
-          <AiFillEdit />
+          <AiFillEdit
+            onClick={() => {
+              setRecipe(() => recipe);
+              setIsOpenModal(() => true);
+            }}
+          />
         </div>
       </div>
     </div>
