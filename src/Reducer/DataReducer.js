@@ -61,7 +61,7 @@ export function DataReducer(state, action) {
         "recipes",
         JSON.stringify([
           ...state.recipes,
-          { ...recipe, id: "RCP" + totalRecipes + 1 },
+          { ...recipe, id: "RCP" + (totalRecipes + 1) },
         ])
       );
       break;
