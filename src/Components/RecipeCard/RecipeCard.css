@@ -1,0 +1,52 @@
+.RecipeCardContainer {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem;
+}
+.RecipeCardContainer img {
+  align-self: center;
+  width: 16rem;
+  height: 16rem;
+}
+.RecipeName {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.RecipeContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+.Cuisions,
+.Instructions,
+.Ingredients {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  width: 100%;
+}
+.Cuisions span:first-of-type,
+.Instructions span:first-of-type,
+.Ingredients span:first-of-type {
+  font-weight: 500;
+}
+.ActionButtons {
+  display: flex;
+  gap: 1rem;
+}
+.DeleteButton {
+  color: rgb(200, 9, 9);
+}
+.DeleteButton,
+.EditButton {
+  font-size: 2rem;
+  cursor: pointer;
+  user-select: none;
+}
